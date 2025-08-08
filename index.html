@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tema="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assistente de Estudos com IA</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="icon" href="assets/livro.png">
+
+</head>
+
+<body>
+  <header class="header">
+    <h1>📚 Estuda+ com IA</h1>
+    <p>Seu parceiro inteligente para aprender mais e melhor!</p>
+  </header>
+
+  <button id="toggleTema" aria-label="Alternar tema">🌙</button>
+
+  <section class="intro">
+    <h1>👋 Bem-vindo ao Estuda+ com IA</h1>
+    <p>Este assistente inteligente está aqui para turbinar seus estudos com a ajuda da inteligência artificial. Faça
+      perguntas, peça resumos, tire dúvidas ou organize sua rotina de aprendizado — tudo em um só lugar!</p>
+    <p>Escolha o modelo de IA, envie sua dúvida e deixe a mágica acontecer. Bora aprender de forma prática e moderna! 🚀
+    </p>
+  </section>
+
+  <main class="container">
+
+    <section class="configuracoes">
+      <h2>🔧 Configurações</h2>
+      <form id="configForm">
+        <input type="text" id="apiKey" placeholder="Cole sua API Key aqui" required>
+        <select id="modeloIA">
+          <option value="gpt-3.5">GPT-3.5</option>
+          <option value="gemini-pro">Gemini Pro</option>
+        </select>
+        <button type="submit">Salvar</button>
+      </form>
+    </section>
+
+    <section class="form-pergunta">
+      <h2>❓ Faça sua pergunta</h2>
+      <form id="perguntaForm">
+        <textarea id="pergunta" placeholder="Digite sua dúvida aqui..." required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+
+    <section class="status">
+      <p id="loader" class="oculto">⏳</p>
+      <p id="erro" class="erro oculto">❌ Ocorreu um erro. Tente novamente!</p>
+    </section>
+
+    <section class="resposta-ia">
+      <h2>📄 Resposta</h2>
+      <div id="respostaConteudo"></div>
+      <div class="resposta-actions">
+        <button id="copiarResposta" aria-label="Copiar resposta">📋 Copiar</button>
+        <button id="limparResposta" aria-label="Limpar resposta">🗑 Limpar</button>
+      </div>
+    </section>
+
+    <section class="historico">
+      <h2>🕘 Histórico</h2>
+      <div id="listaHistorico">Nenhuma pergunta ainda</div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Estuda+ com IA</p>
+  </footer>
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>
