@@ -1,0 +1,59 @@
+
+/* Responsividade geral para tablets e abaixo */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  header {
+    padding: 1.5rem 1rem;
+    font-size: 1.2rem;
+  }
+
+  .intro,
+  section {
+    padding: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+
+  .resposta-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* Responsividade para celulares */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  .intro h1 {
+    font-size: 1.5rem;
+  }
+
+  header {
+    font-size: 1rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+  }
+
+  #loader {
+    font-size: 1rem;
+  }
+}
