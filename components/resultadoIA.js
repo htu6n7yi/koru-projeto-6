@@ -1,4 +1,7 @@
 export function mostrarResposta(texto) {
+
+   console.log('mostrarResposta chamado com texto:', texto);
+
   const respostaConteudo = document.getElementById('respostaConteudo');
   const paragrafo = document.createElement('p');
   paragrafo.textContent = texto;

@@ -34,3 +34,4 @@ perguntaForm.addEventListener('submit', async (e) => {
     loader.classList.add('oculto');
   }
 });
+}

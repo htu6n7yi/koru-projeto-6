@@ -1,11 +1,7 @@
-import { sendQuestion } from './services/api.js'; // ajuste o caminho se precisar
+import { inicializarFormulario } from "./components/formPergunta.js";
+import { inicializarAcoesResposta, mostrarResposta } from "./components/resultadoIA.js";
+import { sendQuestion } from "./services/api.js";
 
-async function main() {
-  const question = "Quais as linguagens de programação mais usadas na atualidade?";
-  
-  const response = await sendQuestion(question);
-  
-  console.log("Resposta da API:", response);
-}
-
-main();
+inicializarFormulario(sendQuestion);
+inicializarAcoesResposta();
+mostrarResposta("Sua resposta será exibida aqui");
