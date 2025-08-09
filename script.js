@@ -1,3 +1,5 @@
+import { sendQuestion } from './services/api.js';
+
 const toggleBtn = document.getElementById('toggleTema');
 const html = document.documentElement;
 
@@ -19,4 +21,9 @@ toggleBtn.addEventListener('click', () => {
 function atualizarIcone(tema) {
     toggleBtn.textContent = tema === 'dark' ? '☀️' : '🌙';
 }
+
+
+sendQuestion("Quais as linguagens de programação mais usadas na atualidade?")
+  .then(response => console.log("Resposta da API:", response))
+  .catch(error => console.error("Erro:", error));
 
