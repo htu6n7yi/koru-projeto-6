@@ -23,7 +23,4 @@ function atualizarIcone(tema) {
 }
 
 
-sendQuestion("Quais as linguagens de programação mais usadas na atualidade?")
-  .then(response => console.log("Resposta da API:", response))
-  .catch(error => console.error("Erro:", error));
 
