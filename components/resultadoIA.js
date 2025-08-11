@@ -11,7 +11,7 @@ function formatarTextoMarkdown(texto) {
 
 export function mostrarResposta(texto) {
   const respostaConteudo = document.getElementById('respostaConteudo');
-  const textoFormatado = formatarTextoMarkdown
+  const textoFormatado = formatarTextoMarkdown(texto);
   const paragrafo = document.createElement('p');
   paragrafo.textContent = texto;
   paragrafo.style.animation = 'fadeIn 0.6s ease-in-out';
