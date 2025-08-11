@@ -1,7 +1,17 @@
 import { carregarHistorico, limparHistorico, atualizarFavorito } from '../services/storage.js';
 
+function formatarTextoMarkdown(texto) {
+  return texto
+    .replace(/```(.*?)```/gs, '<pre><code>$1</code></pre>') 
+    .replace(/`([^`]+)`/g, '<code>$1</code>')                
+    .replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>') 
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')        
+    .replace(/\*(.*?)\*/g, '<em>$1</em>');                   
+}
+
 export function mostrarResposta(texto) {
   const respostaConteudo = document.getElementById('respostaConteudo');
+  const textoFormatado = formatarTextoMarkdown
   const paragrafo = document.createElement('p');
   paragrafo.textContent = texto;
   paragrafo.style.animation = 'fadeIn 0.6s ease-in-out';
