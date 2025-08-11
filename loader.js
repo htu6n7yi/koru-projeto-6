@@ -1,13 +1,13 @@
 // loader.js (ES Module)
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('perguntaForm');
-    const respostaConteudo = document.getElementById('respostaConteudo');
-    const erro = document.getElementById('erro');
-    const statusLoaderInline = document.getElementById('loader'); // o que já existe na sua página
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("perguntaForm");
+  const respostaConteudo = document.getElementById("respostaConteudo");
+  const erro = document.getElementById("erro");
+  const statusLoaderInline = document.getElementById("loader"); // o que já existe na sua página
 
-    // ---- Estilos do overlay (injetados para não depender do seu CSS) ----
-    const style = document.createElement('style');
-    style.textContent = `
+  // ---- Estilos do overlay (injetados para não depender do seu CSS) ----
+  const style = document.createElement("style");
+  style.textContent = `
     /* Overlay tela cheia */
     #loadingOverlay.loader-overlay {
       position: fixed;
@@ -62,86 +62,90 @@ document.addEventListener('DOMContentLoaded', () => {
       to   { transform: translateY(0);   opacity: 1;  }
     }
   `;
-    document.head.appendChild(style);
+  document.head.appendChild(style);
 
-    // ---- Estrutura do overlay ----
-    const overlay = document.createElement('div');
-    overlay.id = 'loadingOverlay';
-    overlay.className = 'loader-overlay oculto';
-    overlay.setAttribute('role', 'status');
-    overlay.setAttribute('aria-live', 'polite');
-    overlay.setAttribute('aria-busy', 'true');
-    overlay.innerHTML = `
+  // ---- Estrutura do overlay ----
+  const overlay = document.createElement("div");
+  overlay.id = "loadingOverlay";
+  overlay.className = "loader-overlay oculto";
+  overlay.setAttribute("role", "status");
+  overlay.setAttribute("aria-live", "polite");
+  overlay.setAttribute("aria-busy", "true");
+  overlay.innerHTML = `
     <div class="loader-modal">
       <div class="loader-spinner" aria-hidden="true"></div>
       <p class="loader-text">Gerando resposta…</p>
       <small class="loader-hint">Isso pode levar alguns segundos.</small>
     </div>
   `;
-    document.body.appendChild(overlay);
+  document.body.appendChild(overlay);
 
-    // ---- Funções globais para você reutilizar se quiser ----
-    function showLoader(text = 'Gerando resposta…') {
-        const textEl = overlay.querySelector('.loader-text');
-        if (textEl) textEl.textContent = text;
-        overlay.classList.remove('oculto');
-        // trava o scroll do body
-        document.body.dataset.scrollLock = '1';
-        document.body.style.overflow = 'hidden';
-        // mostra também o loader inline (se você quiser manter)
-        if (statusLoaderInline) statusLoaderInline.classList.remove('oculto');
+  // ---- Funções globais para você reutilizar se quiser ----
+  function showLoader(text = "Gerando resposta…") {
+    const textEl = overlay.querySelector(".loader-text");
+    if (textEl) textEl.textContent = text;
+    overlay.classList.remove("oculto");
+    // trava o scroll do body
+    document.body.dataset.scrollLock = "1";
+    document.body.style.overflow = "hidden";
+    // mostra também o loader inline (se você quiser manter)
+    if (statusLoaderInline) statusLoaderInline.classList.remove("oculto");
+  }
+
+  function hideLoader() {
+    overlay.classList.add("oculto");
+    if (statusLoaderInline) statusLoaderInline.classList.add("oculto");
+    if (document.body.dataset.scrollLock === "1") {
+      document.body.style.overflow = "";
+      delete document.body.dataset.scrollLock;
     }
+  }
 
-    function hideLoader() {
-        overlay.classList.add('oculto');
-        if (statusLoaderInline) statusLoaderInline.classList.add('oculto');
-        if (document.body.dataset.scrollLock === '1') {
-            document.body.style.overflow = '';
-            delete document.body.dataset.scrollLock;
-        }
-    }
+  // expõe para outros scripts (ex.: você pode chamar window.hideLoader() após o fetch)
+  window.showLoader = showLoader;
+  window.hideLoader = hideLoader;
 
-    // expõe para outros scripts (ex.: você pode chamar window.hideLoader() após o fetch)
-    window.showLoader = showLoader;
-    window.hideLoader = hideLoader;
-
-    // ---- Mostra ao enviar o formulário ----
-    if (form) {
-        form.addEventListener('submit', () => {
-            showLoader();
-        });
-    }
-
-    // ---- Esconde quando a resposta aparecer ----
-    if (respostaConteudo) {
-        const respostaObserver = new MutationObserver(() => {
-            if (overlay.classList.contains('oculto')) return;
-            const hasText = (respostaConteudo.textContent || '').trim().length > 0;
-            const hasNodes = respostaConteudo.children.length > 0;
-
-            if (hasText || hasNodes) {
-                hideLoader();
-            }
-        });
-        respostaObserver.observe(respostaConteudo, {
-            childList: true,
-            subtree: true,
-            characterData: true
-        });
-    }
-
-    // ---- Esconde se aparecer erro ----
-    if (erro) {
-        const erroObserver = new MutationObserver(() => {
-            if (!erro.classList.contains('oculto')) hideLoader();
-        });
-        erroObserver.observe(erro, { attributes: true, attributeFilter: ['class'] });
-    }
-
-    // ---- Permite fechar com ESC (útil em testes/dev) ----
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !overlay.classList.contains('oculto')) {
-            hideLoader();
-        }
+  // ---- Mostra ao enviar o formulário ----
+  if (form) {
+    form.addEventListener("submit", () => {
+      showLoader();
     });
+  }
+
+  // ---- Esconde quando a resposta aparecer ----
+  if (respostaConteudo) {
+    const respostaObserver = new MutationObserver(() => {
+      if (overlay.classList.contains("oculto")) return;
+      const hasText = (respostaConteudo.textContent || "").trim().length > 0;
+      const hasNodes = respostaConteudo.children.length > 0;
+
+      if (hasText || hasNodes) {
+        hideLoader();
+      }
+    });
+
+    respostaObserver.observe(respostaConteudo, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+    });
+  }
+
+  // ---- Esconde se aparecer erro ----
+  if (erro) {
+    const erroObserver = new MutationObserver(() => {
+      if (!erro.classList.contains("oculto")) hideLoader();
+    });
+    erroObserver.observe(erro, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  }
+
+  // ---- Permite fechar com ESC (útil em testes/dev) ----
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !overlay.classList.contains("oculto")) {
+      hideLoader();
+    }
+  });
 });
