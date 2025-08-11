@@ -13,7 +13,7 @@ export function mostrarResposta(texto) {
   const respostaConteudo = document.getElementById('respostaConteudo');
   const textoFormatado = formatarTextoMarkdown(texto);
   const paragrafo = document.createElement('p');
-  paragrafo.textContent = texto;
+  paragrafo.innerHTML = textoFormatado;
   paragrafo.style.animation = 'fadeIn 0.6s ease-in-out';
   respostaConteudo.appendChild(paragrafo);
   respostaConteudo.scrollIntoView({ behavior: 'smooth' });
@@ -34,7 +34,6 @@ export function inicializarAcoesResposta() {
   });
 
   limparBtn.addEventListener('click', () => {
-    // Só limpa a área de resposta, não o histórico
     respostaConteudo.innerHTML = '';
   });
 
@@ -58,13 +57,12 @@ export function inicializarAcoesResposta() {
       </div>
     `).join("");
 
-    // Depois de renderizar, adiciona eventos aos botões favorito
     document.querySelectorAll('.btn-favorito').forEach(btn => {
       btn.addEventListener('click', () => {
         const idx = parseInt(btn.dataset.index);
         const atualFavorito = historico[idx].favorito;
         atualizarFavorito(idx, !atualFavorito);
-        renderHistorico(); // re-renderiza para atualizar o ícone
+        renderHistorico(); 
       });
     });
   }
