@@ -22,3 +22,41 @@ export function atualizarFavorito(index, valor) {
 export function limparHistorico() {
   localStorage.removeItem(STORAGE_KEY);
 }
+
+const CONFIG_API_KEY = 'koru_apiKey';
+const CONFIG_MODEL = 'koru_model';
+
+export function salvarItem(chave, valor) {
+  try {
+    localStorage.setItem(chave, valor ?? '');
+  } catch (err) {
+    console.error('Erro ao salvar no localStorage', err);
+    throw err;
+  }
+}
+
+export function lerItem(chave) {
+  try {
+    return localStorage.getItem(chave);
+  } catch (err) {
+    console.error('Erro ao ler localStorage', err);
+    return null;
+  }
+}
+
+
+export function salvarApiKey(key) {
+  salvarItem(CONFIG_API_KEY, key);
+}
+
+export function lerApiKey() {
+  return lerItem(CONFIG_API_KEY);
+}
+
+export function salvarModelo(model) {
+  salvarItem(CONFIG_MODEL, model);
+}
+
+export function lerModelo() {
+  return lerItem(CONFIG_MODEL);
+}
