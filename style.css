@@ -188,32 +188,60 @@
  #respostaConteudo,
  #listaHistorico {
    overflow-x: auto;
-   /* Ativa rolagem horizontal */
    white-space: nowrap;
-   /* Mantém o conteúdo numa única linha */
    padding-bottom: 5px;
-   /* Dá espaço para a barra de rolagem */
  }
 
- /* Barra de rolagem estilizada */
- #respostaConteudo::-webkit-scrollbar,
+
+ /* Histórico com rolagem vertical */
+ #listaHistorico {
+   max-height: 350px;
+   overflow-y: auto;
+   overflow-x: hidden;
+   padding-right: 5px;
+ }
+
  #listaHistorico::-webkit-scrollbar {
-   height: 8px;
+   width: 8px;
  }
 
- #respostaConteudo::-webkit-scrollbar-track,
  #listaHistorico::-webkit-scrollbar-track {
    background: #f0f0f0;
  }
 
- #respostaConteudo::-webkit-scrollbar-thumb,
  #listaHistorico::-webkit-scrollbar-thumb {
    background: #007bff;
    border-radius: 4px;
  }
 
- #respostaConteudo::-webkit-scrollbar-thumb:hover,
  #listaHistorico::-webkit-scrollbar-thumb:hover {
+   background: #0056b3;
+ }
+
+ /* Resposta com rolagem vertical */
+#respostaConteudo {
+  max-height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 5px;
+  white-space: normal; /* aqui é o segredo */
+}
+
+ /* Barra de rolagem vertical azul */
+ #respostaConteudo::-webkit-scrollbar {
+   width: 8px;
+ }
+
+ #respostaConteudo::-webkit-scrollbar-track {
+   background: #f0f0f0;
+ }
+
+ #respostaConteudo::-webkit-scrollbar-thumb {
+   background: #007bff;
+   border-radius: 4px;
+ }
+
+ #respostaConteudo::-webkit-scrollbar-thumb:hover {
    background: #0056b3;
  }
 
