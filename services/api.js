@@ -18,6 +18,7 @@ function getApiUrl(model = DEFAULT_MODEL) {
     return 'https://api.openai.com/v1/chat/completions';
   }
   throw new Error('Modelo não suportado no front-end.');
+
 }
 
 function getApiKeyOrThrow() {
@@ -27,6 +28,7 @@ function getApiKeyOrThrow() {
   }
   return key;
 }
+
 
 /**
  * Envia a pergunta para a API adequada conforme o modelo selecionado.
@@ -84,8 +86,24 @@ export async function sendQuestion(question) {
     } else if (model === 'gpt-3.5') {
       return data?.choices?.[0]?.message?.content || 'Resposta não encontrada';
     }
+
   } catch (erro) {
     console.error('Erro ao enviar pergunta: ', erro);
+
+    // Detecta se é erro de chave ou modelo
+    if (erro.message.includes('API_KEY_INVALID') || erro.message.includes('API key not valid')) {
+      return 'Chave da API inválida. Vá em Configurações e cole a chave correta.';
+    }
+
+    if (erro.message.includes('Modelo não suportado')) {
+      return 'O modelo selecionado não é suportado. Verifique as configurações.';
+    }
+
+    if (erro.message.includes('400')) {
+      return 'Erro de requisição (400). Verifique se a chave e o modelo estão corretos.';
+    }
+
     return 'Erro na requisição. Verifique se a API Key e o modelo estão configurados.';
   }
+
 }
