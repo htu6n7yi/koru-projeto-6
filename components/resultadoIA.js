@@ -2,11 +2,11 @@ import { carregarHistorico, limparHistorico, atualizarFavorito } from '../servic
 
 function formatarTextoMarkdown(texto) {
   return texto
-    .replace(/```(.*?)```/gs, '<pre><code>$1</code></pre>') 
-    .replace(/`([^`]+)`/g, '<code>$1</code>')                
-    .replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>') 
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')        
-    .replace(/\*(.*?)\*/g, '<em>$1</em>');                   
+    .replace(/```(.*?)```/gs, '<pre><code>$1</code></pre>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>')
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>');
 }
 
 export function mostrarResposta(texto) {
@@ -58,12 +58,13 @@ export function inicializarAcoesResposta() {
     `).join("");
 
     document.querySelectorAll('.btn-favorito').forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.onclick = () => {
         const idx = parseInt(btn.dataset.index);
         const atualFavorito = historico[idx].favorito;
         atualizarFavorito(idx, !atualFavorito);
-        renderHistorico(); 
-      });
+        renderHistorico();
+      };
     });
+
   }
 }
