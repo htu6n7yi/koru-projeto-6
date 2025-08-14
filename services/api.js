@@ -18,6 +18,7 @@ function getApiUrl(model = DEFAULT_MODEL) {
     return 'https://api.openai.com/v1/chat/completions';
   }
   throw new Error('Modelo não suportado no front-end.');
+
 }
 
 function getApiKeyOrThrow() {
@@ -27,6 +28,7 @@ function getApiKeyOrThrow() {
   }
   return key;
 }
+
 
 /**
  * Envia a pergunta para a API adequada conforme o modelo selecionado.
