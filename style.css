@@ -79,6 +79,12 @@
    font-weight: 600;
  }
 
+ #descricaoModelo, #descricaoApiKey{
+ margin-top:0.3rem; 
+ font-style: italic; 
+ color: #555;
+ }
+
  /* Sections */
  section {
    background-color: var(--secondary);
@@ -191,7 +197,6 @@
    white-space: nowrap;
    padding-bottom: 5px;
  }
-
 
  /* Histórico com rolagem vertical */
  #listaHistorico {
@@ -386,4 +391,9 @@
  [data-tema="dark"] input::placeholder,
  [data-tema="dark"] textarea::placeholder {
    color: rgba(255, 255, 255, 0.4);
+ }
+
+[data-tema="dark"] #descricaoModelo,
+ [data-tema="dark"] #descricaoApiKey {
+   color: rgba(156, 199, 255, 0.616);
  }

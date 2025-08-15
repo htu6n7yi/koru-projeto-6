@@ -23,13 +23,13 @@ function inicializarConfig() {
   function maskKey(k) {
     if (!k) return '';
     if (k.length <= 8) return k.replace(/.(?=.{4})/g, '*');
-    return `${k.slice(0,4)}****${k.slice(-4)}`;
+    return `${k.slice(0, 4)}****${k.slice(-4)}`;
   }
 
   const descricoes = {
     'gpt-3.5': 'GPT-3.5: modelo da OpenAI, balanceado entre velocidade e qualidade.',
     'gemini-2.0-flash': 'Gemini 2.0 Flash: modelo Google rápido e leve, bom para respostas rápidas e econômicas.'
-};
+  };
 
   function atualizarDescricao() {
     const modeloAtual = modeloSelect.value;
@@ -78,7 +78,12 @@ function inicializarConfig() {
 }
 
 /* === Inicialização da página === */
-inicializarConfig();              // 1) configurações
-inicializarFormulario(sendQuestion); // 2) formulário de pergunta (usa sendQuestion)
-inicializarAcoesResposta();       
+inicializarConfig();
+inicializarFormulario(sendQuestion);
+inicializarAcoesResposta();
 mostrarResposta("Sua resposta será exibida aqui");
+
+// Garante que ao carregar a página, a rolagem fique no topo
+window.addEventListener("load", () => {
+  window.scrollTo(0, 0);
+});
