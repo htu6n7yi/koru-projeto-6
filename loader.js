@@ -50,8 +50,25 @@ document.addEventListener("DOMContentLoaded", () => {
       animation: loaderSpin 1s linear infinite;
     }
 
+    /* Texto e dica */
     .loader-text { font-weight: 600; }
     .loader-hint { opacity: .8; font-size: .9rem; }
+
+    /* Barra de progresso */
+    .loader-progress {
+      width: 100%;
+      height: 6px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.15);
+      overflow: hidden;
+      margin-top: .5rem;
+    }
+    .loader-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      transition: width 1.2s ease;
+    }
 
     @keyframes loaderSpin {
       from { transform: rotate(0deg); }
@@ -76,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="loader-spinner" aria-hidden="true"></div>
       <p class="loader-text">Gerando resposta…</p>
       <small class="loader-hint">Isso pode levar alguns segundos.</small>
+      <div class="loader-progress"><div class="loader-progress-bar"></div></div>
     </div>
   `;
   document.body.appendChild(overlay);
@@ -85,15 +103,36 @@ document.addEventListener("DOMContentLoaded", () => {
     const textEl = overlay.querySelector(".loader-text");
     if (textEl) textEl.textContent = text;
     overlay.classList.remove("oculto");
+
     // trava o scroll do body
     document.body.dataset.scrollLock = "1";
     document.body.style.overflow = "hidden";
+
     // mostra também o loader inline (se você quiser manter)
     if (statusLoaderInline) statusLoaderInline.classList.remove("oculto");
+
+    // ---- Barra de progresso fake ----
+    const progressBar = overlay.querySelector(".loader-progress-bar");
+    if (progressBar) {
+      progressBar.style.width = "0%";
+      setTimeout(() => (progressBar.style.width = "40%"), 300);
+      setTimeout(() => (progressBar.style.width = "70%"), 2000);
+      setTimeout(() => (progressBar.style.width = "85%"), 5000);
+    }
   }
 
   function hideLoader() {
-    overlay.classList.add("oculto");
+    const progressBar = overlay.querySelector(".loader-progress-bar");
+    if (progressBar) {
+      progressBar.style.width = "100%";
+      setTimeout(() => {
+        overlay.classList.add("oculto");
+        progressBar.style.width = "0%"; // reset
+      }, 300);
+    } else {
+      overlay.classList.add("oculto");
+    }
+
     if (statusLoaderInline) statusLoaderInline.classList.add("oculto");
     if (document.body.dataset.scrollLock === "1") {
       document.body.style.overflow = "";
@@ -107,7 +146,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---- Mostra ao enviar o formulário ----
   if (form) {
-    form.addEventListener("submit", () => {
+    form.addEventListener("submit", (e) => {
+      const apiKeyInput = document.getElementById("apiKey");
+      if (!apiKeyInput || !apiKeyInput.value.trim()) {
+        // Não mostra o loader se o campo estiver vazio
+        return alert("Por favor, insira sua chave de API.");
+      }
       showLoader();
     });
   }
