@@ -18,6 +18,7 @@ export function mostrarResposta(texto) {
   respostaConteudo.appendChild(paragrafo);
   respostaConteudo.scrollIntoView({ behavior: 'smooth' });
 
+  
   renderHistorico();
 }
 
@@ -57,16 +58,16 @@ export function renderHistorico() {
   }
 
   listaHistorico.innerHTML = historico.map((item, index) => `
-    <div class="item-historico" style="border-bottom: 1px solid #eee; padding: 8px 0; display:flex; justify-content:space-between; align-items:center;">
-      <div>
-        <strong>Pergunta:</strong> ${item.pergunta}<br>
-        <strong>Resposta:</strong> ${item.resposta}
-      </div>
-      <button aria-label="Favoritar item" class="btn-favorito" data-index="${index}" style="min-width: 50px; max-width: 50px; margin: 0 2rem; padding: 0.3rem">
-        ${item.favorito ? '⭐' : '☆'}
-      </button>
-    </div>
-  `).join("");
+  <div class="hist-card ${index % 2 === 0 ? 'hist-usuario' : 'hist-ia'}">
+    <div><strong>Pergunta:</strong><br>${item.pergunta}</div>
+    <div><strong>Resposta:</strong><br>${formatarTextoMarkdown(item.resposta)}</div>
+    <div class="hist-timestamp">${item.data}</div>
+    <button class="btn-favorito" data-index="${index}">
+      ${item.favorito ? '⭐' : '☆'}
+    </button>
+  </div>
+`).join('');
+
 
   document.querySelectorAll('.btn-favorito').forEach(btn => {
     btn.onclick = () => {
