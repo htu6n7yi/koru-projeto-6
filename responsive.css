@@ -1,17 +1,175 @@
+/* Media Query para 360px */
+@media screen and (max-width: 360px) {
+  .container {
+    padding: 0.5rem;
+  }
 
-/* Responsividade geral para tablets e abaixo */
-@media (max-width: 768px) {
+  header {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header h1 {
+    font-size: 0.8rem;
+    line-height: 1.1;
+    max-width: 70%;
+    margin: 0;
+    text-align: left;
+  }
+
+  #toggleTema {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+  }
+
+  #toggleTema::after {
+    font-size: 0.5rem;
+    left: 40px;
+  }
+}
+
+/* Media Query para 375px */
+@media screen and (min-width: 361px) and (max-width: 375px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  header {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header h1 {
+    font-size: 0.85rem;
+    line-height: 1.1;
+    max-width: 70%;
+    margin: 0;
+    text-align: left;
+  }
+
+  #toggleTema {
+    width: 38px;
+    height: 38px;
+    font-size: 1.1rem;
+    margin-left: 0.5rem;
+  }
+
+  #toggleTema::after {
+    font-size: 0.55rem;
+    left: 40px;
+  }
+}
+
+/* Media Query para 412px */
+@media screen and (min-width: 376px) and (max-width: 412px) {
+  .container {
+    padding: 0.75rem;
+  }
+
+  header {
+    padding: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header h1 {
+    font-size: 0.9rem;
+    line-height: 1.2;
+    max-width: 75%;
+    margin: 0;
+    text-align: left;
+  }
+
+  #toggleTema {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+  }
+
+  #toggleTema::after {
+    font-size: 0.6rem;
+    left: 40px;
+  }
+}
+
+/* Media Query para 430px */
+@media screen and (min-width: 413px) and (max-width: 430px) {
+  .container {
+    padding: 0.75rem;
+  }
+
+  header {
+    padding: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header h1 {
+    font-size: 0.95rem;
+    line-height: 1.2;
+    max-width: 75%;
+    margin: 0;
+    text-align: left;
+  }
+
+  #toggleTema {
+    width: 42px;
+    height: 42px;
+    font-size: 1.3rem;
+    margin-left: 0.5rem;
+  }
+
+  #toggleTema::after {
+    font-size: 0.65rem;
+    left: 40px;
+  }
+}
+
+/* Media Query para 540px e acima */
+@media screen and (min-width: 540px) {
+  header {
+    justify-content: flex-start;
+    padding: 2rem 1rem;
+  }
+
+  header h1 {
+    font-size: 2rem;
+    margin: 0;
+    text-align: left;
+    max-width: 80%;
+  }
+
+  #toggleTema {
+    margin-left: 1rem;
+  }
+}
+
+/* Responsividade para tablets e abaixo */
+@media screen and (max-width: 768px) {
   .container {
     padding: 1rem;
   }
 
   header {
-    padding: 1.5rem 1rem;
-    font-size: 1.2rem;
+    padding: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   header h1 {
-    font-size: 2rem;
+    font-size: 1rem;
+    line-height: 1.2;
+    max-width: 80%;
+    text-align: center;
   }
 
   .intro,
@@ -36,10 +194,23 @@
     flex-direction: column;
     gap: 0.5rem;
   }
+
+  #toggleTema {
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+    position: static;
+    margin-top: 0.5rem;
+  }
+
+  #toggleTema::after {
+    font-size: 0.7rem;
+    left: 60px;
+  }
 }
 
 /* Responsividade para celulares */
-@media (max-width: 480px) {
+@media screen and (max-width: 480px) {
   h2 {
     font-size: 1.3rem;
   }
@@ -50,6 +221,14 @@
 
   header {
     font-size: 1rem;
+    padding-left: 0;
+  }
+
+  header h1 {
+    font-size: 0.9rem;
+    max-width: 70%;
+    margin-left: 0.5rem;
+    text-align: left;
   }
 
   button {
@@ -59,5 +238,22 @@
 
   #loader {
     font-size: 1rem;
+  }
+
+  .cta-button {
+    width: 92%;
+    padding: 1rem 1.2rem;
+    font-size: 1.05rem;
+  }
+
+  #toggleTema {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+  }
+
+  #toggleTema::after {
+    font-size: 0.6rem;
   }
 }

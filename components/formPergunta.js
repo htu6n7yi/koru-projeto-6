@@ -3,39 +3,55 @@ import { salvarConversa } from '../services/storage.js';
 
 export function inicializarFormulario(enviarPerguntaAPI) {
   const perguntaForm = document.getElementById('perguntaForm');
+  if (!perguntaForm) return;
+
+  // 🔒 Evita listeners duplicados se esta função for chamada mais de 1x
+  if (perguntaForm.dataset.initialized === '1') return;
+  perguntaForm.dataset.initialized = '1';
+
   const perguntaInput = document.getElementById('pergunta');
-  const loader = document.getElementById('loader');
   const erro = document.getElementById('erro');
   const respostaConteudo = document.getElementById('respostaConteudo');
+  const conquista = document.getElementById('conquista');
 
-  // Atalho Ctrl+Enter
-  perguntaInput.addEventListener('keydown', (e) => {
-    if (e.ctrlKey && e.key === 'Enter') {
-      perguntaForm.requestSubmit();
-    }
-  });
+  function mostrarConquista() {
+    if (!conquista) return;
+    conquista.classList.remove('oculto');
+    setTimeout(() => conquista.classList.add('oculto'), 2000);
+  }
+
+  // Atalho Ctrl+Enter (só adiciona se o input existir)
+  if (perguntaInput) {
+    perguntaInput.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.key === 'Enter') {
+        perguntaForm.requestSubmit();
+      }
+    });
+  }
 
   // Envio da pergunta
   perguntaForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const pergunta = perguntaInput.value.trim();
+    const pergunta = (perguntaInput?.value || '').trim();
     if (!pergunta) return;
 
-    loader.classList.remove('oculto');
-    erro.classList.add('oculto');
-    respostaConteudo.innerHTML = '';
+    // 🚀 Mostra loader usando o sistema centralizado
+    window.showLoader();
+
+    erro?.classList.add('oculto');
+    if (respostaConteudo) respostaConteudo.innerHTML = '';
 
     try {
       const resposta = await enviarPerguntaAPI(pergunta);
       mostrarResposta(resposta);
-
-      // Salva pergunta e resposta no localStorage com favorito=false
+      mostrarConquista();
       salvarConversa(pergunta, resposta);
-
     } catch (err) {
-      erro.classList.remove('oculto');
+      console.error(err);
+      erro?.classList.remove('oculto');
     } finally {
-      loader.classList.add('oculto');
+      // 🚀 Esconde loader pelo sistema centralizado
+      window.hideLoader();
     }
   });
 }

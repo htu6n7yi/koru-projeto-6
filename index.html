@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Estuda+ com IA – Seu parceiro inteligente para aprender melhor</title>
+  <title>Estuda+ com IA – Aprenda Melhor com Inteligência Artificial</title>
 
   <!-- SEO básico -->
   <meta name="description"
@@ -40,14 +40,13 @@
 
 <body>
   <header class="header">
-    <h1>📚 Estuda+ com IA</h1>
-    <p>Seu parceiro inteligente para aprender mais e melhor!</p>
+    <button type="button" id="toggleTema" aria-label="Alternar entre tema claro e escuro" role="switch"
+      aria-checked="false">🌙</button>
+    <h1>📚 Estuda+ com IA – Seu parceiro inteligente para aprender melhor!</h1>
   </header>
 
-  <button id="toggleTema" aria-label="Alternar entre tema claro e escuro" role="switch" aria-checked="false">🌙</button>
-
   <section class="intro">
-    <h1>👋 Bem-vindo ao Estuda+ com IA</h1>
+    <h2>👋 Bem-vindo ao Estuda+ com IA</h2>
     <p>Este assistente inteligente está aqui para turbinar seus estudos com a ajuda da inteligência artificial. Faça
       perguntas, peça resumos, tire dúvidas ou organize sua rotina de aprendizado — tudo em um só lugar!</p>
     <p>Escolha o modelo de IA, envie sua dúvida e deixe a mágica acontecer. Bora aprender de forma prática e moderna! 🚀
@@ -55,13 +54,21 @@
   </section>
 
   <main class="container">
+    <div class="cta-container" aria-hidden="false">
+      <button id="ctaPrincipal" class="cta-button" type="button" aria-label="Ir para o formulário de perguntas">
+        🚀 Quero começar!
+        <span class="cta-sub">Faça uma pergunta</span>
+      </button>
+    </div>
 
     <section class="configuracoes">
       <h2>🔧 Configurações</h2>
       <form id="configForm">
         <label for="apiKey" class="sr-only">Chave da API</label>
-        <input type="text" id="apiKey" placeholder="Cole sua API Key aqui" required aria-describedby="descricaoApiKey">
+        <input type="text" id="apiKey" placeholder="Cole sua API Key aqui" required aria-describedby="descricaoApiKey"
+          aria-required="true">
         <small id="descricaoApiKey">Campo para inserir sua chave de API do provedor escolhido.</small>
+        <label for="modeloIA" class="sr-only">Escolha o modelo de IA</label>
         <select id="modeloIA">
           <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
           <option value="gpt-3.5">GPT-3.5 (OpenAI)</option>
@@ -76,25 +83,53 @@
       <form id="perguntaForm">
         <label for="pergunta" class="sr-only">Digite sua dúvida</label>
         <textarea id="pergunta" placeholder="Digite sua dúvida aqui..." required></textarea>
+        <div class="contador-container">
+          <span id="contadorCaracteres">1000</span> caracteres restantes
+        </div>
         <button type="submit">Enviar</button>
       </form>
     </section>
 
-
     <section class="resposta-ia">
       <h2>📄 Resultado</h2>
       <div id="respostaConteudo" aria-live="polite"></div>
+      <div id="erro" class="oculto" role="alert">
+        ⚠️ Ops! Não consegui responder agora. Tente novamente.
+      </div>
       <div class="resposta-actions">
-        <button id="copiarResposta" aria-label="Copiar resposta">📋 Copiar</button>
-        <button id="limparResposta" aria-label="Limpar resposta">🗑 Limpar</button>
+        <button type="button" id="copiarResposta" aria-label="Copiar resposta">📋 Copiar</button>
+        <button type="button" id="limparResposta" aria-label="Limpar resposta">🗑 Limpar</button>
       </div>
     </section>
 
+    <div id="conquista" class="oculto">
+      🏆 Parabéns! Você desbloqueou uma conquista!
+    </div>
+
     <section class="historico">
       <h2>🕘 Histórico</h2>
-      <div id="listaHistorico">Nenhuma pergunta ainda</div>
-      <button id="limparHistorico" aria-label="Limpar histórico"> 🕘 Limpar histórico</button>
+
+      <!-- Input + Lupa juntos -->
+      <div class="historico-filtro">
+        <input type="text" id="filtroHistorico" placeholder="🔍 Filtrar histórico" aria-label="Filtrar histórico">
+        <button type="button" id="botaoLupa" aria-label="Pesquisar histórico">🔍</button>
+      </div>
+
+      <!-- Lista do histórico -->
+      <div id="listaHistorico" role="log" aria-live="polite">
+        Nenhuma pergunta ainda
+      </div>
+
+      <!-- Botão de limpar histórico -->
+      <button id="limparHistorico" type="button" aria-label="Limpar histórico">🗑️ Limpar histórico</button>
+
+      <!-- Botões de exportação -->
+      <div class="export-buttons">
+        <button id="exportTxt" type="button">📄 Exportar TXT</button>
+        <button id="exportPdf" type="button">📝 Exportar PDF</button>
+      </div>
     </section>
+
 
   </main>
 
@@ -106,6 +141,7 @@
   <script type="module" src="script.js"></script>
   <script type="module" src="index.js"></script>
   <script type="module" src="loader.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </body>
 
 </html>
