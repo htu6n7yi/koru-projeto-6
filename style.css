@@ -329,30 +329,39 @@ footer {
 }
 
 
+/* Container do histórico */
+#listaHistorico {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;           /* espaço entre cards */
+  max-height: 400px;  /* altura máxima do histórico */
+  overflow-y: auto;   /* adiciona scroll se passar do limite */
+  padding: 10px;
+}
+
 /* Cards do histórico */
 .hist-card {
   border-radius: 12px;
   padding: 10px 14px;
-  margin-bottom: 10px;
+  margin-bottom: 0;          /* gap é controlado pelo flex */
   max-width: 80%;
   word-wrap: break-word;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   font-size: 0.95rem;
   line-height: 1.4;
   position: relative;
+  white-space: pre-wrap;      /* mantém quebras de linha */
 }
 
 /* Diferenciar usuário e IA */
 .hist-usuario {
   background-color: #e0f7fa;
-  /* azul claro */
   align-self: flex-end;
   border-left: 4px solid #00796b;
 }
 
 .hist-ia {
   background-color: #fff9c4;
-  /* amarelo claro */
   align-self: flex-start;
   border-left: 4px solid #fbc02d;
 }
@@ -364,12 +373,6 @@ footer {
   position: absolute;
   bottom: 4px;
   right: 8px;
-}
-
-/* Container do histórico como flex column */
-#listaHistorico {
-  display: flex;
-  flex-direction: column;
 }
 
 /* Container de toasts fixo no canto inferior direito */
