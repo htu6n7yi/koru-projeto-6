@@ -58,19 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Integração com o formulário de pergunta
-    const perguntaForm = document.getElementById('perguntaForm');
-    if (perguntaForm) {
-        perguntaForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const texto = document.getElementById('pergunta').value.trim();
-            if (texto) {
-                adicionarHistorico(texto, 'usuario');
-                perguntaForm.reset(); 
-            }
-        });
-    }
-
     // Filtro do histórico
     const filtro = document.getElementById("filtroHistorico");
     const lupa = document.getElementById("botaoLupa");
@@ -225,8 +212,10 @@ function adicionarHistorico(texto, tipo = "usuario") {
         lista.innerHTML = "";
     }
 
+    /* MUDANÇA ITEM 8*/
+
     const card = document.createElement("div");
-    card.className = `hist-card hist-${tipo}`;
+    card.className = `hist-card hist-${tipo} animate-slideUp`;
 
     const textoSpan = document.createElement("span");
     textoSpan.className = "hist-texto";

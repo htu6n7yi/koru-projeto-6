@@ -1,4 +1,4 @@
-import { mostrarResposta } from './resultadoIA.js';
+import { mostrarResposta, renderHistorico } from './resultadoIA.js';
 import { salvarConversa } from '../services/storage.js';
 
 export function inicializarFormulario(enviarPerguntaAPI) {
@@ -34,6 +34,7 @@ export function inicializarFormulario(enviarPerguntaAPI) {
     e.preventDefault();
     const pergunta = (perguntaInput?.value || '').trim();
     if (!pergunta) return;
+    window.adicionarHistorico?.(pergunta, "usuario");
 
     // 🚀 Mostra loader usando o sistema centralizado
     window.showLoader();
@@ -46,6 +47,7 @@ export function inicializarFormulario(enviarPerguntaAPI) {
       mostrarResposta(resposta);
       mostrarConquista();
       salvarConversa(pergunta, resposta);
+      renderHistorico();
     } catch (err) {
       console.error(err);
       erro?.classList.remove('oculto');
