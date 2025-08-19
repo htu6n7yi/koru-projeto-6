@@ -601,3 +601,77 @@ footer {
 [data-tema="dark"] #descricaoApiKey {
   color: rgba(211, 206, 203, 0.616);
 }
+
+/* COMEÇANDO DAQUI O ITEM 8 */
+
+@keyframes fadeIn { from {opacity:0} to {opacity:1} }
+@keyframes slideUp { from { transform: translateY(10px); opacity:0 } to { transform: translateY(0); opacity:1 } }
+@keyframes slideUpSoft {
+  from { transform: translateY(18px); opacity: 0 }
+  to   { transform: translateY(0); opacity: 1 }
+}
+
+@keyframes fadeInSoft {
+  from { opacity: 0 }
+  to   { opacity: 1 }
+}
+
+.animate-slideUp-slow { 
+  animation: slideUpSoft 0.6s cubic-bezier(.22,.61,.36,1) both; 
+}
+
+.animate-fadeIn-slow { 
+  animation: fadeInSoft 0.6s ease-out both; 
+}
+
+.animate-fadeIn { animation: fadeIn .28s ease-out both }
+.animate-slideUp { animation: slideUp .32s ease-out both }
+
+.resposta-card {
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 10px;
+  background: var(--secondary);
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+}
+
+.resposta-card .resposta-titulo {
+  font-size: .95rem;
+  margin-bottom: 6px;
+  opacity: .75;
+  color: var(--primary);
+}
+.resposta-card .resposta-conteudo {
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.resposta-card .resposta-conteudo ul,
+.resposta-card .resposta-conteudo ol { margin: 8px 0 8px 18px }
+.resposta-card .resposta-conteudo li { margin: 4px 0 }
+.resposta-card .resposta-conteudo code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .9em; padding: 2px 4px; border-radius: 6px;
+  background: rgba(127,127,127,.12);
+}
+
+[data-tema="dark"] .resposta-card {
+  border-color: #2d2f36;
+  background: rgba(0, 12, 31, 0.8);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+}
+[data-tema="dark"] .resposta-card .resposta-conteudo code { background: rgba(255,255,255,.08) }
+
+.hist-card { animation: slideUpSoft 0.6s cubic-bezier(.22,.61,.36,1) both }
+
+[data-tema="dark"] .hist-usuario { color: #083344; }
+[data-tema="dark"] .hist-ia       { color: #3b2f00; }
+
+[data-tema="dark"] .hist-card .hist-texto { color: inherit; }
+
+[data-tema="dark"] .hist-timestamp { color: rgba(0,0,0,.6); }
+
+.historico-filtro { margin-bottom: 12px; }
+#listaHistorico    { padding-top: 12px; gap: 8px; }

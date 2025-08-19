@@ -58,19 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Integração com o formulário de pergunta
-    const perguntaForm = document.getElementById('perguntaForm');
-    if (perguntaForm) {
-        perguntaForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const texto = document.getElementById('pergunta').value.trim();
-            if (texto) {
-                adicionarHistorico(texto, 'usuario');
-                perguntaForm.reset();
-            }
-        });
-    }
-
     // Filtro do histórico
     const filtro = document.getElementById("filtroHistorico");
     const lupa = document.getElementById("botaoLupa");
@@ -125,18 +112,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (exportPdfBtn) {
         exportPdfBtn.addEventListener("click", () => {
             const lista = document.getElementById("listaHistorico");
-            if (!lista || !lista.querySelector(".hist-card")) {
+            const historico = lista ? lista.innerText.trim() : "";
+            console.log("Conteúdo do histórico:", historico); 
+            if (!historico) {
                 showToast("⚠️ Histórico vazio!");
                 return;
             }
-
-            const historico = Array.from(lista.querySelectorAll(".hist-card")).map(card => {
-                const texto = card.querySelector(".hist-texto")?.textContent || "";
-                const timestamp = card.querySelector(".hist-timestamp")?.textContent || "";
-                const tipo = card.classList.contains("hist-usuario") ? "Pergunta" : "Resposta";
-                return `${tipo}:\n${texto}\n${timestamp}`;
-            }).join("\n--------------------\n\n");
-
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             let y = 10;
@@ -155,18 +136,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (exportTxtBtn) {
         exportTxtBtn.addEventListener("click", () => {
             const lista = document.getElementById("listaHistorico");
-            if (!lista || !lista.querySelector(".hist-card")) {
+            const historico = lista ? lista.innerText.trim() : "";
+            console.log("Conteúdo do histórico:", historico); // Depuração
+            if (!historico) {
                 showToast("⚠️ Histórico vazio!");
                 return;
             }
-
-            const historico = Array.from(lista.querySelectorAll(".hist-card")).map(card => {
-                const texto = card.querySelector(".hist-texto")?.textContent || "";
-                const timestamp = card.querySelector(".hist-timestamp")?.textContent || "";
-                const tipo = card.classList.contains("hist-usuario") ? "Pergunta" : "Resposta";
-                return `${tipo}:\n${texto}\n${timestamp}`;
-            }).join("\n--------------------\n\n");
-
             const blob = new Blob([historico], { type: "text/plain;charset=utf-8" });
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
@@ -237,8 +212,10 @@ function adicionarHistorico(texto, tipo = "usuario") {
         lista.innerHTML = "";
     }
 
+    /* MUDANÇA ITEM 8*/
+
     const card = document.createElement("div");
-    card.className = `hist-card hist-${tipo}`;
+    card.className = `hist-card hist-${tipo} animate-slideUp`;
 
     const textoSpan = document.createElement("span");
     textoSpan.className = "hist-texto";
