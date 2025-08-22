@@ -10,13 +10,14 @@ Trata-se de um assistente de estudos com integração de Inteligência Artificia
 ---
 
 ## 🚀 Funcionalidades
-- Envio de perguntas para API de IA e exibição de respostas formatadas.
-- Histórico de perguntas e respostas armazenado localmente.
-- Sistema de favoritos ⭐/☆ para salvar respostas importantes.
-- Modo claro/escuro com alternância via botão.
-- Loader animado durante requisições.
-- Botões para **copiar** e **limpar** respostas.
-- Layout responsivo para diferentes tamanhos de tela.
+- Envio de perguntas para API de IA com exibição de respostas já formatadas (listas, negrito, itálico e links).  
+- Histórico de perguntas e respostas armazenado localmente, com filtro, favoritos e exportação em PDF e TXT.  
+- Feedback visual de “Pergunta respondida com sucesso!” após envio.  
+- Modo claro/escuro com alternância via botão.  
+- Loader animado avançado durante requisições, com overlay e bloqueio de scroll.  
+- Botões para **copiar** e **limpar** respostas, com feedback visual.  
+- Layout responsivo e acessível, otimizado para diferentes tamanhos de tela e contraste adequado.  
+- Melhorias de SEO, labels ARIA e rolagem automática no topo ao recarregar.  
 
 ---
 
@@ -72,16 +73,17 @@ koru-projeto-6/
      ou  
    - Use uma extensão como **Live Server** no VS Code para desenvolvimento.
 
----
-
 ## 🎥 Demonstração
+
+
+https://github.com/user-attachments/assets/bfe55342-0485-429e-a513-096d35d4a7ac
 
 ---
 
 ## 👥 Integrantes e Contribuições
 
 ### 🤝 Organização do Projeto
-- **Carlos José** ([CarlosJSilvaDev](https://github.com/htu6n7yi))
+- **Carlos José** ([CarlosJSilvaDev](https://github.com/htu6n7yi))  
   - Responsável pelo repositório  
   - Organização da estrutura de pastas e módulos  
   - Controle de versionamento e integração no GitHub  
@@ -96,12 +98,17 @@ koru-projeto-6/
   - Testes iniciais de consumo da API  
   - Conexão inicial entre front-end e `services/api.js`  
 
-#### 🔹 Estruturação HTML e Layout  
+#### 🔹 Estruturação HTML, Layout e UX  
 - **Renata Rocha** ([RenataARocha](https://github.com/RenataARocha))  
   - Estrutura inicial do projeto (`index.html`) com HTML semântico e SEO básico  
   - Estilos principais (`style.css`) e responsividade (`responsive.css`)  
   - Layout completo da aplicação (configurações, formulário, resposta, histórico e footer)  
-  - Implementação de botão de alternância claro/escuro no design  
+  - Implementação de botão de alternância claro/escuro  
+  - Ajustes de cores, contraste e acessibilidade  
+  - Implementação de melhorias no filtro do histórico  
+  - Ajustes de exportação de histórico em PDF e TXT  
+  - Feedback visual de “Pergunta respondida com sucesso!”  
+  - Correções no carregamento da API e melhorias na exibição do resultado da IA  
   - Redação e estruturação deste README.md  
 
 #### 🔹 Formulário de Pergunta  
@@ -131,7 +138,12 @@ koru-projeto-6/
   - Validação, salvamento e limpeza das configurações via formulário  
   - Integração com o envio de perguntas para ajustar a requisição conforme o modelo e API Key configurados  
 
----
+#### 🔹 Ajustes e Funcionalidades Extras  
+- **Josue Santos** ([josuepsantos](https://github.com/josuepsantos))  
+  - Refatoração da função de exibição de respostas (`mostrarResposta`)  
+  - Organização e formatação de texto com suporte a listas, parágrafos, negrito, itálico e links  
+  - Integração com histórico, exportação PDF/TXT e botões de copiar/limpar  
+  - Melhorias no streaming de respostas da IA e scroll automático  
 
 ## 🤝 Como contribuir
 1. Faça um **fork** do projeto.  
