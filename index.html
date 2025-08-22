@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="responsive.css" media="(max-width: 768px)">
   <link rel="icon" type="image/png" href="assets/livro.png">
-</head>
 
+</head>
 
 <body>
   <header class="header">
@@ -79,9 +79,9 @@
     </section>
 
     <section class="form-pergunta">
-      <h2>❓ Faça sua pergunta</h2>
+      <h2>💭 Sua pergunta</h2>
       <form id="perguntaForm">
-        <label for="pergunta" class="sr-only">Digite sua dúvida</label>
+        <label for="pergunta"></label>
         <textarea id="pergunta" placeholder="Digite sua dúvida aqui..." required></textarea>
         <div class="contador-container">
           <span id="contadorCaracteres">1000</span> caracteres restantes
@@ -120,16 +120,13 @@
         Nenhuma pergunta ainda
       </div>
 
-      <!-- Botão de limpar histórico -->
-      <button id="limparHistorico" type="button" aria-label="Limpar histórico">🗑️ Limpar histórico</button>
-
-      <!-- Botões de exportação -->
-      <div class="export-buttons">
-        <button id="exportTxt" type="button">📄 Exportar TXT</button>
-        <button id="exportPdf" type="button">📝 Exportar PDF</button>
+      <!-- Botões de ações -->
+      <div class="historico-acoes">
+        <button id="limparHistorico" type="button">🗑️ Limpar</button>
+        <button id="exportTxt" type="button">📄 TXT</button>
+        <button id="exportPdf" type="button">📑 PDF</button>
       </div>
     </section>
-
 
   </main>
 

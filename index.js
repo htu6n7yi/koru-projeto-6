@@ -1,7 +1,7 @@
 import { inicializarFormulario } from "./components/formPergunta.js";
 import { inicializarAcoesResposta, mostrarResposta } from "./components/resultadoIA.js";
 import { sendQuestion } from "./services/api.js";
-import { salvarItem, lerItem } from "./services/storage.js";
+import { salvarItem, } from "./services/storage.js";
 
 /* === Configurações UI (Task 6) === */
 function inicializarConfig() {
@@ -81,7 +81,7 @@ function inicializarConfig() {
 inicializarConfig();
 inicializarFormulario(sendQuestion);
 inicializarAcoesResposta();
-mostrarResposta("Sua resposta será exibida aqui");
+mostrarResposta("");
 
 // Garante que ao carregar a página, a rolagem fique no topo
 window.addEventListener("load", () => {

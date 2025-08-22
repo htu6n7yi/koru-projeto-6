@@ -1,5 +1,6 @@
-import { carregarHistorico, limparHistorico, atualizarFavorito } from '../services/storage.js';
+import { carregarHistorico, limparHistorico, } from '../services/storage.js';
 
+// Função para formatar texto com Markdown seguro
 function formatarTextoMarkdown(texto) {
   const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const seguro = esc(texto);
@@ -11,6 +12,7 @@ function formatarTextoMarkdown(texto) {
     .replace(/\*(.+?)\*/g, '<em>$1</em>');
 }
 
+// Mostra a resposta da IA
 export function mostrarResposta(texto, titulo = 'Resposta da IA:') {
   const respostaConteudo = document.getElementById('respostaConteudo');
   if (!respostaConteudo) return;
@@ -34,6 +36,7 @@ export function mostrarResposta(texto, titulo = 'Resposta da IA:') {
   renderHistorico();
 }
 
+// Inicializa ações dos botões de resposta e histórico
 export function inicializarAcoesResposta() {
   const copiarBtn = document.getElementById('copiarResposta');
   const limparBtn = document.getElementById('limparResposta');
@@ -73,6 +76,7 @@ export function inicializarAcoesResposta() {
   renderHistorico();
 }
 
+// Renderiza o histórico completo
 export function renderHistorico() {
   const listaHistorico = document.getElementById('listaHistorico');
   if (!listaHistorico) return;
@@ -85,53 +89,69 @@ export function renderHistorico() {
 
   listaHistorico.innerHTML = '';
 
-  historico.forEach((item, index) => {
+  historico.forEach((item) => {
+    // Pergunta
     const cardPerg = document.createElement('div');
     cardPerg.className = 'hist-card hist-usuario animate-slideUp';
     const textoPerg = document.createElement('span');
     textoPerg.className = 'hist-texto';
     textoPerg.textContent = item.pergunta;
-    const tsPerg = document.createElement('span');
-    tsPerg.className = 'hist-timestamp';
-    tsPerg.textContent = item.dataPergunta ? ` (${item.dataPergunta})` : '';
     cardPerg.appendChild(textoPerg);
-    cardPerg.appendChild(tsPerg);
 
+    // Resposta
     const cardResp = document.createElement('div');
     cardResp.className = 'hist-card hist-ia animate-slideUp';
     const textoResp = document.createElement('span');
     textoResp.className = 'hist-texto';
     textoResp.textContent = item.resposta;
-    const tsResp = document.createElement('span');
-    tsResp.className = 'hist-timestamp';
-    tsResp.textContent = item.dataResposta ? ` (${item.dataResposta})` : '';
     cardResp.appendChild(textoResp);
-    cardResp.appendChild(tsResp);
+    cardResp.style.display = 'none'; // começa escondida
 
-    const favBtn = document.createElement('button');
-    favBtn.className = 'btn-favorito';
-    favBtn.setAttribute('aria-label', 'Favoritar item');
-    favBtn.dataset.index = String(index);
-    favBtn.textContent = item.favorito ? '⭐' : '☆';
-    favBtn.style.minWidth = '50px';
-    favBtn.style.maxWidth = '50px';
-    favBtn.style.margin = '6px 2rem';
-    favBtn.style.padding = '0.3rem';
-    favBtn.onclick = () => {
-      atualizarFavorito(index, !item.favorito);
-      renderHistorico();
-    };
+    // Toggle: mostra/esconde ao clicar na pergunta
+    cardPerg.addEventListener('click', () => {
+      cardResp.style.display = cardResp.style.display === 'none' ? 'block' : 'none';
+    });
 
+    // Agrupamento
     const wrap = document.createElement('div');
     wrap.style.display = 'flex';
-    wrap.style.alignItems = 'flex-start';
-    wrap.style.gap = '8px';
+    wrap.style.flexDirection = 'column';
+    wrap.style.gap = '4px';
     wrap.appendChild(cardPerg);
     wrap.appendChild(cardResp);
-    wrap.appendChild(favBtn);
 
     listaHistorico.appendChild(wrap);
   });
 
   listaHistorico.scrollTop = listaHistorico.scrollHeight;
+}
+
+// Função para filtrar o histórico
+export function filtrarHistorico(termo) {
+  const lista = document.getElementById('listaHistorico');
+  if (!lista) return;
+
+  const cards = lista.querySelectorAll('.hist-card .hist-texto');
+  if (!cards.length) {
+    window.showToast?.("⚠️ Nenhum histórico encontrado!");
+    return;
+  }
+
+  let algumVisivel = false;
+  termo = termo.trim().toLowerCase();
+
+  cards.forEach(textoSpan => {
+    const card = textoSpan.parentElement;
+    const textoCard = textoSpan.textContent.toLowerCase();
+    if (termo === '' || textoCard.includes(termo)) {
+      card.style.display = 'block';
+      algumVisivel = true;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  if (!algumVisivel && termo !== '') {
+    window.showToast?.("⚠️ Nenhum histórico encontrado!");
+  }
 }
