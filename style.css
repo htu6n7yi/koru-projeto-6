@@ -31,13 +31,6 @@ body {
   animation: fadeIn 0.4s ease-in-out;
 }
 
-/*  Container */
-.container {
-  max-width: 960px;
-  margin: auto;
-  padding: 2rem;
-}
-
 /* Estrutura */
 header,
 .intro,
@@ -47,6 +40,13 @@ input,
 textarea,
 select {
   transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+/*  Container */
+.container {
+  max-width: 960px;
+  margin: auto;
+  padding: 2rem;
 }
 
 /*  Header */
@@ -64,6 +64,15 @@ header h1 {
   margin: 0 auto;
 }
 
+/* Rodapé */
+footer {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  border-top: 4px solid #235cfa;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
 
 /* Intro */
 .intro {
@@ -184,238 +193,6 @@ button:focus-visible {
   box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.3);
 }
 
-/* Tema escuro - botão especial */
-[data-tema="dark"] button::before {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-/* Ações */
-.resposta-actions {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-/* Aplica rolagem horizontal para Resposta e Histórico */
-#respostaConteudo,
-#listaHistorico {
-  overflow-x: auto;
-  white-space: nowrap;
-  padding-bottom: 5px;
-}
-
-/* Histórico com rolagem vertical */
-#listaHistorico {
-  max-height: 350px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-right: 5px;
-}
-
-#listaHistorico::-webkit-scrollbar {
-  width: 8px;
-}
-
-#listaHistorico::-webkit-scrollbar-track {
-  background: #f0f0f0;
-}
-
-#listaHistorico::-webkit-scrollbar-thumb {
-  background: #007bff;
-  border-radius: 4px;
-}
-
-#listaHistorico::-webkit-scrollbar-thumb:hover {
-  background: #0056b3;
-}
-
-/* Resposta com rolagem vertical */
-#respostaConteudo {
-  max-height: 350px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-right: 5px;
-  white-space: normal;
-}
-
-/* Barra de rolagem vertical azul */
-#respostaConteudo::-webkit-scrollbar {
-  width: 8px;
-}
-
-#respostaConteudo::-webkit-scrollbar-track {
-  background: #f0f0f0;
-}
-
-#respostaConteudo::-webkit-scrollbar-thumb {
-  background: #007bff;
-  border-radius: 4px;
-}
-
-#respostaConteudo::-webkit-scrollbar-thumb:hover {
-  background: #0056b3;
-}
-
-#conquista {
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-  color: #fff;
-  padding: 1rem 2rem;
-  border-radius: 16px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.3rem;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Rodapé */
-footer {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  color: white;
-  border-top: 4px solid var(--accent);
-  text-align: center;
-  padding: 1rem;
-  margin-top: 2rem;
-}
-
-/*  Utilitários */
-.oculto {
-  display: none;
-}
-
-.erro {
-  color: red;
-  font-weight: bold;
-}
-
-#loader {
-  font-size: 1.2rem;
-  animation: girar 1s linear infinite;
-  display: inline-block;
-}
-
-.contador-container {
-  font-size: 0.85rem;
-  margin-top: 0.3rem;
-  text-align: right;
-  color: #555;
-}
-
-.contador-verde {
-  color: #28a745;
-}
-
-/* seguro */
-.contador-amarelo {
-  color: #f0ad4e;
-}
-
-/* chegando perto do limite */
-.contador-vermelho {
-  color: #dc3545;
-}
-
-
-/* Container do histórico */
-#listaHistorico {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;           /* espaço entre cards */
-  max-height: 400px;  /* altura máxima do histórico */
-  overflow-y: auto;   /* adiciona scroll se passar do limite */
-  padding: 10px;
-}
-
-/* Cards do histórico */
-.hist-card {
-  border-radius: 12px;
-  padding: 10px 14px;
-  margin-bottom: 0;          /* gap é controlado pelo flex */
-  max-width: 80%;
-  word-wrap: break-word;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  font-size: 0.95rem;
-  line-height: 1.4;
-  position: relative;
-  white-space: pre-wrap;      /* mantém quebras de linha */
-}
-
-/* Diferenciar usuário e IA */
-.hist-usuario {
-  background-color: #e0f7fa;
-  align-self: flex-end;
-  border-left: 4px solid #00796b;
-}
-
-.hist-ia {
-  background-color: #fff9c4;
-  align-self: flex-start;
-  border-left: 4px solid #fbc02d;
-}
-
-/* Data/hora pequena no canto do card */
-.hist-timestamp {
-  font-size: 0.75rem;
-  color: #555;
-  position: absolute;
-  bottom: 4px;
-  right: 8px;
-}
-
-/* Container de toasts fixo no canto inferior direito */
-#toastContainer {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  z-index: 99999;
-}
-
-/* Toast individual */
-.toast {
-  background: linear-gradient(135deg, #5300c0, #ff0fc3, #ff0505da);
-  color: #fff;
-  padding: 0.85rem 1.4rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  font-weight: 600;
-  opacity: 0;
-  transform: translateX(30px);
-  animation: toastIn 0.35s forwards;
-}
-
-/* Animação de entrada */
-@keyframes toastIn {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Animação de saída */
-@keyframes toastOut {
-  to {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-}
-
-
 /* CTA principal - chamativo e acessível */
 .cta-container {
   text-align: center;
@@ -469,6 +246,380 @@ footer {
   transform: scale(0.98);
 }
 
+/* Container do histórico */
+#listaHistorico {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  overflow-x: hidden;
+  padding-right: 5px;
+}
+
+#listaHistorico::-webkit-scrollbar {
+  width: 8px;
+}
+
+#listaHistorico::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+#listaHistorico::-webkit-scrollbar-thumb {
+  background: #007bff;
+  border-radius: 4px;
+}
+
+#listaHistorico::-webkit-scrollbar-thumb:hover {
+  background: #0056b3;
+}
+
+/* Cards do histórico */
+.hist-card {
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 0;
+  max-width: 80%;
+  word-wrap: break-word;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  position: relative;
+  white-space: pre-wrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hist-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Diferenciar usuário e IA */
+.hist-usuario {
+  background-color: #e0f7fa;
+  align-self: flex-end;
+}
+
+.hist-ia {
+  background-color: #fff9c4c2;
+  align-self: flex-start;
+}
+
+/* Data/hora pequena no canto do card */
+.hist-timestamp {
+  font-size: 0.75rem;
+  color: #555;
+  position: absolute;
+  bottom: 4px;
+  right: 8px;
+}
+
+.hist-resposta.collapsed {
+  display: none;
+}
+
+/* Aplica rolagem horizontal para Resposta e Histórico */
+#respostaConteudo,
+#listaHistorico {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 5px;
+}
+
+#listaHistorico {
+  padding-top: 12px;
+  gap: 8px;
+}
+
+/* Input + lupa lado a lado */
+.historico-filtro {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.historico-filtro input {
+  flex: 1;
+  padding: 0.8rem;
+  font-size: 0.95rem;
+}
+
+#botaoLupa {
+  width: 70px;
+  height: 46px;
+  padding: 0;
+  font-size: 1rem;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+
+/* Ações */
+.resposta-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Resposta com rolagem vertical */
+#respostaConteudo {
+  max-height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 5px;
+  white-space: normal;
+}
+
+/* Barra de rolagem vertical azul */
+#respostaConteudo::-webkit-scrollbar {
+  width: 8px;
+}
+
+#respostaConteudo::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+#respostaConteudo::-webkit-scrollbar-thumb {
+  background: #007bff;
+  border-radius: 4px;
+}
+
+#respostaConteudo::-webkit-scrollbar-thumb:hover {
+  background: #0056b3;
+}
+
+
+.resposta-card {
+  border: 1px solid rgba(0, 0, 0, .08);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 10px;
+  background: var(--secondary);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+}
+
+.resposta-card .resposta-titulo {
+  font-size: .95rem;
+  margin-bottom: 6px;
+  opacity: .75;
+  color: var(--primary);
+}
+
+.resposta-card .resposta-conteudo {
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.resposta-card .resposta-conteudo ul,
+.resposta-card .resposta-conteudo ol {
+  margin: 8px 0 8px 18px
+}
+
+.resposta-card .resposta-conteudo li {
+  margin: 4px 0
+}
+
+.resposta-card .resposta-conteudo code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .9em;
+  padding: 2px 4px;
+  border-radius: 6px;
+  background: rgba(127, 127, 127, .12);
+}
+
+.historico-acoes {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.historico-acoes button {
+  flex: 1;
+  min-width: 120px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.historico-acoes button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.historico-acoes button:active {
+  transform: translateY(1px);
+  opacity: 0.8;
+}
+
+
+#conquista {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.3rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Container de toasts fixo no canto inferior direito */
+#toastContainer {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 99999;
+}
+
+/* Toast individual */
+.toast {
+  background: linear-gradient(90deg, #0003c0, #0080e9, #1b32ffda);
+  color: #fff;
+  padding: 0.85rem 1.4rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+  opacity: 0;
+  transform: translateX(30px);
+  animation: toastIn 0.35s forwards;
+}
+
+/* Animação de entrada */
+@keyframes toastIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animação de saída */
+@keyframes toastOut {
+  to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1
+  }
+}
+
+@keyframes slideUpSoft {
+  from {
+    transform: translateY(18px);
+    opacity: 0
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1
+  }
+}
+
+@keyframes fadeInSoft {
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+/*  Utilitários */
+.oculto {
+  display: none;
+}
+
+.erro {
+  color: red;
+  font-weight: bold;
+}
+
+#loader {
+  font-size: 1.2rem;
+  animation: girar 1s linear infinite;
+  display: inline-block;
+}
+
+.contador-container {
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  text-align: right;
+  color: #555;
+}
+
+.contador-verde {
+  color: #28a745;
+}
+
+/* seguro */
+.contador-amarelo {
+  color: #f0ad4e;
+}
+
+/* chegando perto do limite */
+.contador-vermelho {
+  color: #dc3545;
+}
+
+.animate-slideUp-slow {
+  animation: slideUpSoft 0.6s cubic-bezier(.22, .61, .36, 1) both;
+}
+
+.animate-fadeIn-slow {
+  animation: fadeInSoft 0.6s ease-out both;
+}
+
+.animate-fadeIn {
+  animation: fadeIn .28s ease-out both
+}
+
+.animate-slideUp {
+  animation: slideUp .32s ease-out both
+}
 
 /* === Botão de alternância de tema === */
 #toggleTema {
@@ -519,9 +670,11 @@ footer {
   transform: translateY(-50%) scale(1.1);
 }
 
+
+
 /* Tema escuro */
 [data-tema="dark"] #toggleTema {
-  background: #facc15;
+  background: #ffd310;
   color: #000000;
 }
 
@@ -538,7 +691,7 @@ footer {
 
 [data-tema="dark"] header,
 [data-tema="dark"] footer {
-  background-color: var(--primary);
+  background: linear-gradient(135deg, #0003c0, #235cfa);
   color: white;
   border-bottom: 4px solid var(--accent);
 }
@@ -565,20 +718,20 @@ footer {
 [data-tema="dark"] input,
 [data-tema="dark"] textarea,
 [data-tema="dark"] select {
-  background-color: var(--secondary);
+  background-color: #0b003523;
   color: var(--text);
   border: 1px solid #475569;
 }
 
 [data-tema="dark"] button {
-  background: linear-gradient(135deg, var(--accent), var(--primary));
+  background: linear-gradient(135deg, #0003c0, #235cfa);
   border: none;
   color: white;
   box-shadow: 0 0 12px rgba(6, 182, 212, 0.25);
 }
 
 [data-tema="dark"] button:hover {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: linear-gradient(135deg, var(--primary), #0003c0, var(--accent));
   box-shadow: 0 0 18px rgba(129, 140, 248, 0.4);
   transform: translateY(-2px);
 }
@@ -594,84 +747,70 @@ footer {
 
 [data-tema="dark"] input::placeholder,
 [data-tema="dark"] textarea::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.466);
 }
 
 [data-tema="dark"] #descricaoModelo,
 [data-tema="dark"] #descricaoApiKey {
-  color: rgba(211, 206, 203, 0.616);
-}
-
-/* COMEÇANDO DAQUI O ITEM 8 */
-
-@keyframes fadeIn { from {opacity:0} to {opacity:1} }
-@keyframes slideUp { from { transform: translateY(10px); opacity:0 } to { transform: translateY(0); opacity:1 } }
-@keyframes slideUpSoft {
-  from { transform: translateY(18px); opacity: 0 }
-  to   { transform: translateY(0); opacity: 1 }
-}
-
-@keyframes fadeInSoft {
-  from { opacity: 0 }
-  to   { opacity: 1 }
-}
-
-.animate-slideUp-slow { 
-  animation: slideUpSoft 0.6s cubic-bezier(.22,.61,.36,1) both; 
-}
-
-.animate-fadeIn-slow { 
-  animation: fadeInSoft 0.6s ease-out both; 
-}
-
-.animate-fadeIn { animation: fadeIn .28s ease-out both }
-.animate-slideUp { animation: slideUp .32s ease-out both }
-
-.resposta-card {
-  border: 1px solid rgba(0,0,0,.08);
-  border-radius: 12px;
-  padding: 14px 16px;
-  margin-top: 10px;
-  background: var(--secondary);
-  box-shadow: 0 2px 10px rgba(0,0,0,.06);
-}
-
-.resposta-card .resposta-titulo {
-  font-size: .95rem;
-  margin-bottom: 6px;
-  opacity: .75;
-  color: var(--primary);
-}
-.resposta-card .resposta-conteudo {
-  line-height: 1.55;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-.resposta-card .resposta-conteudo ul,
-.resposta-card .resposta-conteudo ol { margin: 8px 0 8px 18px }
-.resposta-card .resposta-conteudo li { margin: 4px 0 }
-.resposta-card .resposta-conteudo code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: .9em; padding: 2px 4px; border-radius: 6px;
-  background: rgba(127,127,127,.12);
+  color: rgba(255, 255, 255, 0.466);
 }
 
 [data-tema="dark"] .resposta-card {
   border-color: #2d2f36;
   background: rgba(0, 12, 31, 0.8);
-  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, .35);
+  border: 1px solid #cccccc4d;
 }
-[data-tema="dark"] .resposta-card .resposta-conteudo code { background: rgba(255,255,255,.08) }
 
-.hist-card { animation: slideUpSoft 0.6s cubic-bezier(.22,.61,.36,1) both }
+[data-tema="dark"] .resposta-titulo {
+  color: rgba(255, 255, 255, 0.466);
+}
 
-[data-tema="dark"] .hist-usuario { color: #083344; }
-[data-tema="dark"] .hist-ia       { color: #3b2f00; }
+[data-tema="dark"] .resposta-card .resposta-conteudo code {
+  background: rgba(255, 255, 255, .08)
+}
 
-[data-tema="dark"] .hist-card .hist-texto { color: inherit; }
+.hist-card {
+  animation: slideUpSoft 0.6s cubic-bezier(.22, .61, .36, 1) both
+}
 
-[data-tema="dark"] .hist-timestamp { color: rgba(0,0,0,.6); }
+[data-tema="dark"] .hist-usuario {
+  color: #083344;
+}
 
-.historico-filtro { margin-bottom: 12px; }
-#listaHistorico    { padding-top: 12px; gap: 8px; }
+[data-tema="dark"] .hist-ia {
+  color: #3b2f00;
+}
+
+[data-tema="dark"] .hist-card .hist-texto {
+  color: inherit;
+}
+
+[data-tema="dark"] .hist-timestamp {
+  color: rgba(0, 0, 0, .6);
+}
+
+[data-tema="dark"] .hist-usuario {
+  background-color: #001536;
+  color: #e3f2fd;
+}
+
+[data-tema="dark"] .hist-ia {
+  background: linear-gradient(135deg, #01010f, #010233);
+  color: #faefed;
+}
+
+[data-tema="dark"] .hist-usuario:hover {
+  background: linear-gradient(135deg, #01010f, #03042c);
+  box-shadow: 0 0 18px rgba(3, 11, 90, 0.4);
+  transform: translateY(-2px);
+}
+
+[data-tema="dark"] .hist-ia:hover {
+  box-shadow: 0 0 18px rgba(3, 11, 90, 0.4);
+  transform: translateY(-2px);
+}
+
+[data-tema="dark"] button::before {
+  background: rgba(255, 255, 255, 0.08);
+}
